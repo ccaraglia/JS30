@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+<div class="keys">
+
+    <div data-key="81" class="key">
+      <kbd>Q</kbd>
+      <span class="sound">Bell</span>
+    </div>
+
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">Clap</span>
+    </div>
+
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">Clip</span>
+    </div>
+
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">Ping</span>
+    </div>
+
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">Chin</span>
+    </div>
+
+
+</div>
+
+
+
+<audio data-key="81" src="sounds/CB.mp3"></audio>
+<audio data-key="83" src="sounds/CP.mp3"></audio>
+<audio data-key="68" src="sounds/CL.mp3"></audio>
+<audio data-key="70" src="sounds/CH.mp3"></audio>
+<audio data-key="71" src="sounds/CY0000.mp3"></audio>
+
+
+<script>
+
+window.addEventListener('keydown', function(e){
+//        console.log(e.keyCode)
+     var sound = document.querySelector(`audio[data-key='${e.keyCode}']`)
+     var key = document.querySelector(`.key[data-key='${e.keyCode}']`)
+     key.classList.add('playing')
+     console.log(key)
+     if(! sound) return
+
+    sound.currentTime = 0
+    sound.play()
+})
+
+var changeBack = function(e){
+    this.classList.remove('playing')
+}
+
+var keys = document.querySelectorAll('.key')
+keys.forEach(key => key.addEventListener('transitionend', changeBack))
+
+
+//trying to work with mouse clicks
+
+window.addEventListener('click', function(e){
+        console.log(e.currentTarget.id)
+     var sound = document.querySelector(`audio[data-key='${e.keyCode}']`)
+     if(! sound) return
+    console.log(sound)
+    sound.currentTime = 0
+    sound.play()
+})
+
+
+</script>
+
+
+</body>
+</html>
