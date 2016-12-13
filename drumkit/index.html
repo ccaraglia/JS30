@@ -70,9 +70,12 @@ keys.forEach(key => key.addEventListener('transitionend', changeBack))
 
 //trying to work with mouse clicks
 
-window.addEventListener('click', function(e){
-        console.log(e.currentTarget.id)
-     var sound = document.querySelector(`audio[data-key='${e.keyCode}']`)
+window.addEventListener('click', function(evt){
+        console.log(evt.target)
+console.log(evt.target.attributes[0])
+
+
+     var sound = document.querySelector(`audio[data-key='${evt.target.attributes[0].nodeValue}']`)
      if(! sound) return
     console.log(sound)
     sound.currentTime = 0
