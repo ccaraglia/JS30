@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CLOCK</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class='clock'>
+
+
+
+<div class='hours'>
+</div>
+<div class='minutes'>
+</div>
+<div class='seconds'>
+</div>
+
+</div>
+
+<script>
+var orologio = function(){
+var date = new Date()
+
+var hora =  (date.getHours()%12)/12*360 + 90 + 360/12 * date.getMinutes()/59
+var minutos = date.getMinutes()/59*360 + 90
+var segundos = date.getSeconds()/59*360 + 90
+
+
+var hoursHand = document.querySelector('.hours')
+var minutesHand = document.querySelector('.minutes')
+var secondsHand = document.querySelector('.seconds')
+
+
+hoursHand.style.transform = `rotate(${hora}deg)`
+minutesHand.style.transform = `rotate(${minutos}deg)`
+secondsHand.style.transform = `rotate(${segundos}deg)`
+}
+
+setInterval(orologio, 1000)
+
+
+
+
+</script>
+
+
+</body>
+</html>
